@@ -1,0 +1,17 @@
+version: "3"
+name: "template"
+services:
+  react-app:
+    container_name: react-app-local
+    image: react-app-local
+    build:
+      context: ../../../
+      dockerfile: ci/docker/dockerfiles/Dockerfile
+      target: local
+    ports:
+      - "${APP_DOCKER_HOST_PORT}:${PORT}"
+    environment:
+      - NODE_ENV=local
+    volumes:
+      - ../../../:/usr/src/app
+      - /usr/src/app/node_modules
